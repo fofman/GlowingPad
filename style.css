@@ -1,0 +1,147 @@
+/*
+GitHub colors
+    --d1: #f2f2f2;
+    --d2: #21262D;
+    --d3: #161B22;
+    --d4: #0D1117;
+*/
+
+
+:root{
+    --d1: #3d3d3d;
+    --d2: #A8A4CE;
+    --d3: #7A86B6;
+    --d4: #efeffa;
+    --d5: #e5e5ee;
+    --red: #cc1d1d;
+    --green: #0da416;
+    --border: rgba(242, 242, 242, 0.26);
+}
+
+html, body{
+    background-color: var(--d5) !important;
+    font-family: Arial;
+    margin: 0;
+}
+
+textarea{
+    height: auto;
+    resize: none;
+    outline: none !important;
+    font-size: 16px;
+    font-family: inherit;
+    margin: 0 !important;
+}
+
+input{
+    outline: none !important;
+}
+
+/*
+--ROBETTA PER IL "DEBUG"--
+*{
+    background-color: rgba(238, 71, 71, 0.26);
+    outline-style: dashed;
+    outline-color: black;
+    outline-width: 1px;
+    word-wrap: break-word;
+}**/
+
+.box{
+    text-align: justify;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0px 15px 0px;
+    /*colorazione*/
+    background-color: var(--d3);
+    color: black;
+    border: 2px solid var(--border);
+}
+
+.boxText{
+    padding: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: block;
+    /*colorazione*/
+    background-color: var(--d4);
+    border-style: none;
+}
+
+.boxText::placeholder{
+    color: #3f3f3f;
+}
+
+.optBox{
+    padding: 8px 5px 8px 5px;
+    user-select: none;
+    color: var(--d1) !important;
+    border: 2px solid var(--border);
+    border-style: none none solid none;
+
+}
+
+.optIcon{
+    margin: 2px;
+    padding: 2px 4px 4px 4px;
+    border-radius: 5px;
+    font-family: 'Times New Roman';
+    cursor: pointer;
+    /*colorazione*/
+    background-color: var(--d2 );
+    border: 1px solid var(--border);
+}
+
+.leftOpt{
+    text-align: left;
+}
+
+.rightOpt{
+    float: right;
+}
+
+.bi{
+    font-size: 22px;
+}
+
+.warning{
+    color: var(--red);
+}
+
+.green{
+    color: var(--green);
+}
+
+#app{
+    padding: 0px 15% 0px 15%;
+}
+
+#appBar{
+    padding: 12px 10px 12px 10px;
+    user-select: none;
+    /*colorazione*/
+    color: var(--d1);
+    background-color: var(--d3);
+}
+
+#name{
+    background-color: var(--d2);
+    color: var(--d1);
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+#inputfile{
+    display: none;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    #app{
+        padding: 0px 4px 0px 4px;
+    }
+}

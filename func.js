@@ -123,7 +123,7 @@ function save(name) {
     let texts = [];
     let elements = document.querySelectorAll(".editBox");
     elements.forEach(box => {
-        texts.push(box.value);
+        texts.push(box.innerText.slice(0,-1));//selezione del testo senza l'ultimo \n
     });
     //console.log(texts);
     if (name !== "") {

@@ -59,7 +59,7 @@ input{
 }
 
 .boxText{
-    padding: 5px;
+    padding: 5px 8px 5px 8px;
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
@@ -99,6 +99,13 @@ input{
 
 .rightOpt{
     float: right;
+}
+
+.minimize{
+    background-color: #ceceea;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    height: fit-content;
 }
 
 .bi{

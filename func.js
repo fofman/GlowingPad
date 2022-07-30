@@ -1,25 +1,10 @@
-function loadSize() {
-    document.querySelectorAll(".editBox").forEach(element => {
-        element.style.height += element.scrollHeight + "px";
-    });
-}
-
-function autoResize() {
-    document.querySelectorAll(".editBox").forEach(function (element) {
-        element.style.boxSizing = 'border-box';
-        var offset = element.offsetHeight - element.clientHeight;
-        element.addEventListener('input', function (event) {
-            event.target.style.height = 'auto';
-            event.target.style.height = event.target.scrollHeight + offset + 'px';
-        });
-    });
-}
-
 function render(text) {
     let result = document.createElement("div");
     result.className = "boxText renderBox";
     let buffer = "";
+
     for (var i = 0; i < text.length; i++) {
+
         while (text[i] !== "\n") {
             if (text[i] === "<") buffer = buffer.concat("&lt;");//per evitare la creazione di tag html
             else if (text[i] === ">") buffer = buffer.concat("&gt;");
@@ -47,7 +32,6 @@ function render(text) {
         buffer = "";
     }
 
-    console.log(result);
     return result;
 }
 
@@ -66,15 +50,16 @@ function download(filename, text) {
 
 function play(btn) {
     let box = btn.parentElement.parentElement.parentElement;
-
     let textBox = box.children[1];
+    let text = textBox.innerText;
 
     textBox.style.display = "none";//nascondo l'editbox
     btn.style.display = "none";//nascondo il bottone play
     box.firstElementChild.firstElementChild.lastElementChild.style.display = "inline";//mostro il bottone pause
     box.lastElementChild.style.display = "none";//nascondo il minimize
 
-    box.children[1].insertAdjacentElement("afterend",render(textBox.value + "\n"));//inserimento degli oggetti renderizzati
+    box.children[1].insertAdjacentElement("afterend",render(text + "\n"));//inserimento degli oggetti renderizzati
+
 }
 
 function pause(btn) {
@@ -92,7 +77,7 @@ function pause(btn) {
 function delContent(btn) {
     let box = btn.parentElement.parentElement.parentElement;
     if(box.lastElementChild.className!=="reduce"){
-        box.children[1].value = "";
+        box.children[1].innerText = "";
     }
 }
 
@@ -103,14 +88,12 @@ function delBox(btn) {
 
 function minimize(btn) {
     let editBox = btn.parentElement.children[1];
-    //console.log(editBox);
-    //console.log(editBox.style.height);
     if (editBox.style.height !== "64px") {
         editBox.style.height = "64px";
         btn.innerHTML=`<i class="bi bi-chevron-compact-down"></i>`;
     } else {
         //console.log(editBox.scrollHeight);
-        editBox.style.height=`${editBox.scrollHeight}px`;
+        editBox.style.height="auto";
         btn.innerHTML=`<i class="bi bi-chevron-compact-up"></i>`
     }
 }
@@ -130,11 +113,10 @@ function add(content) {
             <i class="optIcon bi bi-x-circle warning" onclick="delBox(this)"></i>
         </span>
     </div>
-    <textarea class="boxText editBox" rows="3" placeholder="Premi qui per scrivere">${content}</textarea>
+    <div class="boxText editBox" contentEditable>${content}</div>
     <div class="minimize" onclick="minimize(this)"><i class="bi bi-chevron-compact-up"></i></div>
     </div>
     `);
-    autoResize();
 }
 
 function save(name) {
@@ -154,19 +136,26 @@ function save(name) {
 //file reader
 document.getElementById('inputfile').addEventListener('change', function () {
     let fr = new FileReader();
+
     fr.onload = function () {
         document.getElementById("app").innerHTML = '';
+        let buffer="";
         let text = fr.result;
         let texts = text.split("");
         texts.forEach(content => {
-            add(content);
-            loadSize();
+            let lines = content.split("\n");
+            lines.forEach(line => {
+                buffer+=line+"<br>";
+            });
+            add(buffer);
+            buffer="";
         });
     }
 
     fr.readAsText(this.files[0]);
+    document.getElementById("name").value=this.files[0].name.slice(0,-4);
+    //console.log(this.files[0].name);
 })
-
 
 //per il primo .box
 add("");

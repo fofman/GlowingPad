@@ -43,6 +43,14 @@ input{
     word-wrap: break-word;
 }**/
 
+.inputBox{
+    background-color: var(--d2);
+    color: var(--d1);
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
 .box{
     text-align: justify;
     border-radius: 10px;
@@ -127,14 +135,6 @@ input{
     /*colorazione*/
     color: var(--d1);
     background-color: var(--d3);
-}
-
-#name{
-    background-color: var(--d2);
-    color: var(--d1);
-    padding: 3px;
-    border: 1px solid var(--border);
-    border-radius: 5px;
 }
 
 #inputfile{

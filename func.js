@@ -76,7 +76,7 @@ function pause(btn) {
 
 function delContent(btn) {
     let box = btn.parentElement.parentElement.parentElement;
-    if (box.lastElementChild.className !== "reduce") {
+    if (box.children[1].style.display === "block") {
         box.children[1].innerText = "";
     }
 }

@@ -136,28 +136,28 @@ function setFilter(selector) {
     document.getElementById("category").remove();
 }
 
-function filterDoc(btn) {
+function filterDoc() {
     let app = document.getElementById("app").children;
     let categories = [];
 
     for (let i = 0; i < app.length; i++) {
-        categories.push(app[i].firstElementChild.lastElementChild.firstElementChild.value);
+        if(app[i].firstElementChild.lastElementChild.firstElementChild.value!==""){
+            categories.push(app[i].firstElementChild.lastElementChild.firstElementChild.value);
+        }
     }
 
     categories = new Set(categories);
 
-    categories.delete("");
     if (categories.size === 0) {
         return false;
     }
     if (document.getElementById("appBar").firstElementChild.lastElementChild.id !== "category") {
-        document.getElementById("appBar").firstElementChild.insertAdjacentHTML("beforeend", "<select id='category' onchange='setFilter(this)'><option value='' selected hidden disabled>No Filter</option><option value=''>All</select>")
+        document.getElementById("appBar").firstElementChild.insertAdjacentHTML("beforeend", "<select id='category' onchange='setFilter(this)'><option value='' selected hidden disabled>No Filter</option><option value=''>All</select>");
 
         categories.forEach(category => {
             document.getElementById("category").insertAdjacentHTML("beforeend", `<option>${category}</option>`);
         });
     }
-
 }
 
 function save(name) {

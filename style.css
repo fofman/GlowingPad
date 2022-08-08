@@ -1,12 +1,3 @@
-/*
-GitHub colors
-    --d1: #f2f2f2;
-    --d2: #21262D;
-    --d3: #161B22;
-    --d4: #0D1117;
-*/
-
-
 :root{
     --d1: #3d3d3d;
     --d2: #A8A4CE;
@@ -55,7 +46,7 @@ input{
     text-align: justify;
     border-radius: 10px;
     overflow: hidden;
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0 15px 0;
     /*colorazione*/
     background-color: var(--d3);
     color: black;
@@ -63,11 +54,11 @@ input{
 }
 
 .boxText{
+    display: block;
     padding: 5px 8px 5px 8px;
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    display: block;
     /*colorazione*/
     background-color: var(--d4);
     border-style: none;
@@ -82,8 +73,8 @@ input{
     padding: 8px 5px 8px 5px;
     user-select: none;
     color: var(--d1) !important;
-    border: 2px solid var(--border);
-    border-style: none none solid none;
+    border: 2px none var(--border);
+    border-bottom-style: solid;
 
 }
 
@@ -126,7 +117,7 @@ input{
 }
 
 #app{
-    padding: 0px 15% 0px 15%;
+    padding: 0 15% 0 15%;
 }
 
 #appBar{
@@ -146,6 +137,6 @@ input{
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
     #app{
-        padding: 0px 4px 0px 4px;
+        padding: 0 4px 0 4px;
     }
 }

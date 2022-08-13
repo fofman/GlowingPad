@@ -1,9 +1,16 @@
+const colors = JSON.parse(`{ "colors" : [
+{"short":"r" , "full":"red"},
+{"short":"g" , "full":"#45b825"},
+{"short":"b" , "full":"blue"},
+{"short":"y" , "full":"#debd16"}
+]}`);
+
 function render(text) {
     let result = document.createElement("div");
     result.className = "boxText renderBox";
     let buffer = "";
 
-    for (var i = 0; i < text.length; i++) {
+    for (let i = 0; i < text.length; i++) {
 
         while (text[i] !== "\n") {
             if (text[i] === "<") buffer = buffer.concat("&lt;");//per evitare la creazione di tag html
@@ -16,6 +23,13 @@ function render(text) {
         } else if (buffer[0] === "#" && buffer[1] === "#") {
             buffer = buffer.substring(2);
             result.insertAdjacentHTML("beforeend", `<h1>${buffer}</h1>`);
+        } else if (buffer[0] === "#") {
+            for(let i=0;i<colors["colors"].length;i++){
+            if (buffer[1] === colors.colors[i].short && buffer[2] === "#") {
+                buffer = buffer.substring(3);
+                result.insertAdjacentHTML("beforeend", `<h1 style="color: ${colors.colors[i].full}">${buffer}</h1>`);
+            }
+        }
         } else if (buffer[0] === "=" && buffer[1] === "=") {
             buffer = buffer.substring(2);
             try {

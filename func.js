@@ -233,7 +233,21 @@ document.getElementById('inputfile').addEventListener('change', function () {
     fr.readAsText(this.files[0]);
     document.getElementById("name").value = this.files[0].name.slice(0, -4);
     //console.log(this.files[0].name);
-})
+});
+
+//conferma di reload
+window.onbeforeunload = function ()
+{
+    return "";
+};
+
+//salvataggio con ctrl+s
+document.onkeydown = (e) => {
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        save(document.getElementById('name').value);
+    }
+}
 
 //per il primo .box
 add("", "");

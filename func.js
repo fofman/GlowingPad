@@ -105,7 +105,6 @@ function minimize(btn) {
         editBox.style.height = "64px";
         btn.innerHTML = `<i class="bi bi-chevron-compact-down"></i>`;
     } else {
-        //console.log(editBox.scrollHeight);
         editBox.style.height = "auto";
         btn.innerHTML = `<i class="bi bi-chevron-compact-up"></i>`
     }
@@ -196,8 +195,6 @@ function save(name) {
     texts += "";
     texts += categories.join("");
 
-    console.log(texts);
-
     if (name !== "") {
         download(`${name}.dhn`, texts);
     } else {
@@ -232,7 +229,6 @@ document.getElementById('inputfile').addEventListener('change', function () {
 
     fr.readAsText(this.files[0]);
     document.getElementById("name").value = this.files[0].name.slice(0, -4);
-    //console.log(this.files[0].name);
 });
 
 //conferma di reload

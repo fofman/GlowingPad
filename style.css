@@ -24,16 +24,6 @@ input{
     outline: none !important;
 }
 
-/*
---ROBETTA PER IL "DEBUG"--
-*{
-    background-color: rgba(238, 71, 71, 0.26);
-    outline-style: dashed;
-    outline-color: black;
-    outline-width: 1px;
-    word-wrap: break-word;
-}**/
-
 .inputBox{
     background-color: var(--d2);
     color: var(--d1);
@@ -46,7 +36,7 @@ input{
     text-align: justify;
     border-radius: 10px;
     overflow: hidden;
-    margin: 15px 0 15px 0;
+    margin: 15px auto 15px auto;
     /*colorazione*/
     background-color: var(--d3);
     color: black;
@@ -117,7 +107,8 @@ input{
 }
 
 #app{
-    padding: 0 15% 0 15%;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 #appBar{

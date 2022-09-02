@@ -1,9 +1,9 @@
-const colors = JSON.parse(`{ "colors" : [
+const colors = JSON.parse(`[
 {"short":"r" , "full":"red"},
 {"short":"g" , "full":"#45b825"},
 {"short":"b" , "full":"blue"},
 {"short":"y" , "full":"#debd16"}
-]}`);
+]`);
 
 function render(text) {
     let result = document.createElement("div");
@@ -24,10 +24,10 @@ function render(text) {
             buffer = buffer.substring(2);
             result.insertAdjacentHTML("beforeend", `<h1>${buffer}</h1>`);
         } else if (buffer[0] === "#") {
-            for(let i=0;i<colors["colors"].length;i++){
-            if (buffer[1] === colors.colors[i].short && buffer[2] === "#") {
+            for(let i=0;i<colors.length;i++){
+            if (buffer[1] === colors[i].short && buffer[2] === "#") {
                 buffer = buffer.substring(3);
-                result.insertAdjacentHTML("beforeend", `<h1 style="color: ${colors.colors[i].full}">${buffer}</h1>`);
+                result.insertAdjacentHTML("beforeend", `<h1 style="color: ${colors[i].full}">${buffer}</h1>`);
             }
         }
         } else if (buffer[0] === "=" && buffer[1] === "=") {
@@ -42,7 +42,9 @@ function render(text) {
             result.insertAdjacentHTML("beforeend", `<hr>`);
         } else if (buffer[0] === "-") {
             result.insertAdjacentHTML("beforeend", `<div>&nbsp;${buffer}</div>`);
-        } else result.insertAdjacentHTML("beforeend", `<div>${buffer}</div>`);
+        } else {
+            result.insertAdjacentHTML("beforeend", `<div>${buffer}</div>`);
+        }
         buffer = "";
     }
 

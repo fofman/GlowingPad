@@ -12,7 +12,7 @@ function render(text) {
 
     for (let i = 0; i < text.length; i++) {
 
-        while (text[i] !== "\n") {
+        while (text[i] !== "\n" && i<text.length) {
             if (text[i] === "<") buffer = buffer.concat("&lt;");//per evitare la creazione di tag html
             else if (text[i] === ">") buffer = buffer.concat("&gt;");
             else buffer = buffer.concat(text[i]);
@@ -73,7 +73,7 @@ function play(btn) {
     box.firstElementChild.firstElementChild.lastElementChild.style.display = "inline";//mostro il bottone pause
     box.lastElementChild.style.display = "none";//nascondo il minimize
 
-    box.children[1].insertAdjacentElement("afterend", render(text + "\n"));//inserimento degli oggetti renderizzati
+    box.children[1].insertAdjacentElement("afterend", render(text));//inserimento degli oggetti renderizzati
 
 }
 
@@ -180,12 +180,7 @@ function save(name) {
     let categories = [];
     let elements = document.querySelectorAll(".editBox");
     elements.forEach(box => {
-        if(box.innerText.split(/\r\n|\r|\n/).length>1){
-            texts.push(box.innerText.slice(0,-1));
-        }
-        else{
-            texts.push(box.innerText);
-        }
+        texts.push(box.innerText);
     });
 
     elements = document.querySelectorAll("[name='category']");
@@ -217,21 +212,15 @@ document.getElementById('inputfile').addEventListener('change', function () {
         let categories = parts[1].split("");
 
         for (let i = 0; i < texts.length; i++) {
-            let lines = texts[i].split("\n");
             let category = categories[i];
-
-            for (let i = 0; i < lines.length; i++) {
-                buffer += lines[i] + "<br>";
-            }
-
-            add(category, buffer);
-            buffer = "";
+            add(category, texts[i]);
         }
     }
 
     fr.readAsText(this.files[0]);
     document.getElementById("name").value = this.files[0].name.slice(0, -4);
 });
+
 
 //conferma di reload
 window.onbeforeunload = function ()

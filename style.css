@@ -55,6 +55,7 @@ input{
 }
 
 .editBox{
+    white-space: pre-line;
     outline: none;
     min-height: 64px;
 }

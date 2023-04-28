@@ -1,38 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
-    <link href="style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.0.1/lib/browser/math.min.js"></script>
-    <title>GlowingPad</title>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="style.css">
+    <!--<link rel="icon" href="images/icon.png">-->
+    <title>XPad</title>
 </head>
 
 <body>
-
-<div id="appBar">
-    <span class="leftOpt">
-        <i class="optIcon bi bi-plus-circle green" onclick="add('','')"></i>
-        <i class="optIcon bi bi-funnel" onclick="filterDoc(this)"></i>
-    </span>
-    <span class="rightOpt">
-        <input class="inputBox" id="name" value="document">
-        <i class="optIcon bi bi-file-earmark-arrow-down" onclick="save(document.getElementById('name').value)"></i>
+    <nav>
+        <a onclick="pause()" id="pause">Pause</a>
+        <a onclick="play()" id="play">Play</a>
+        <a onclick="save()" id="save">Save</a>
         <label>
-            <i class="optIcon bi bi-folder2-open"></i>
+            <a>Open</a>
             <input accept=".dhn" id='inputfile' type='file'>
         </label>
-    </span>
-</div>
-
-<div id="app">
-</div>
-
-<script src="func.js"></script>
-
+        <a class="right" href="docs.html" target="_blank">Help</a>
+    </nav>
+    <main>
+        <div id="edit" class="box" contenteditable="true" spellcheck="false"></div>
+        <div id="render" class="box"></div>
+    </main>
+    <script src="script.js"></script>
 </body>
 
 </html>
